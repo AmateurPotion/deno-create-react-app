@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "ReactDOM": "https://jspm.dev/react-dom@18.2.0",
+    "React": "https://jspm.dev/react@18.2.0",
+    "preact/jsx-runtime": "https://cdn.skypack.dev/preact/jsx-runtime?dts",
+    "preact/jsx-dev-runtime": "https://cdn.skypack.dev/preact/jsx-dev-runtime?dts"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "importMap": "./import_map.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "https://esm.sh/preact@10.11.0",
+    "jsxFactory": "React.createElement",
+    "jsxFragmentFactory": "React.Fragment",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "noImplicitAny": false
+  },
+  "tasks": {
+    /* doc => https://deno.land/x/create_react_app@v0.1.2
+      # CMD List
+      > deno task dcra run -w -p 8000 
+    */
+    "dcra": "deno run -A --unstable F:\\workspace\\deno\\deno-create-react-app\\mod.ts"
+  }
+}
