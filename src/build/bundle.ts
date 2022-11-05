@@ -5,7 +5,7 @@ export async function bundleIndexJs(output:string) {
   const res = await Deno.run({
     cmd: [
       'deno', 'bundle',
-      '--config', 'tsconfig.json',
+      '--config', 'deno.json',
       'index.tsx', output
     ]
   })
