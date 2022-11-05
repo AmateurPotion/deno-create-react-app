@@ -5,8 +5,8 @@ export * from "dcra/build/main.ts";
 
 // init 
 
-export * from "dcra/run/cmd.ts";
-export * from "dcra/run/main.ts";
+export * from "dcra/init/cmd.ts";
+export * from "dcra/init/main.ts";
 
 // run 
 

@@ -1,10 +1,6 @@
 {
   "importMap": "./import_map.json",
   "compilerOptions": {
-    "jsx": "preserve",
-    "jsxImportSource": "https://esm.sh/preact@10.11.0",
-    "jsxFactory": "React.createElement",
-    "jsxFragmentFactory": "React.Fragment",
     "lib": ["dom", "dom.iterable", "esnext"],
     "noImplicitAny": false
   },

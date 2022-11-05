@@ -1,12 +1,16 @@
-import {React} from './deps.ts';
+import React from "https://jspm.dev/react@18.2.0";
 
 function App() {
   return (
     <>
-      <link rel={'stylesheet'} href={'./static/css/App.css'}/>
+      <link rel={"stylesheet"} href={"./static/css/App.css"} />
       <div className="App">
         <header className="App-header">
-          <img src={'./static/images/logo.svg'} className="App-logo" alt="logo"/>
+          <img
+            src={"./static/images/logo.svg"}
+            className="App-logo"
+            alt="logo"
+          />
           <p>
             Edit <code>App.tsx</code> and save to reload.
           </p>

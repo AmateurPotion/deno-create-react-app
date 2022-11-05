@@ -74,8 +74,8 @@ export function runServer(port: number) {
   app.use(router.routes());
   app.use(router.allowedMethods());
 
-  app.addEventListener('listen', ({hostname, port, secure}) => {
-    const url = `${secure ? "https://" : "http://"}${hostname ?? "localhost"}:${port}`
+  app.addEventListener('listen', ({port, secure}) => {
+    const url = `${secure ? "https://" : "http://"}localhost:${port}`
     console.log(`Listening on: ${url}`,);
     open(url)
   });
