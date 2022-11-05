@@ -1,3 +1,16 @@
 {
-    "importMap": "./import_map.json"
+  "importMap": "./import_map.json",
+  "fmt": {
+    "files": {
+      "exclude": ["./src/init/resources/"]
+    }
+  },
+  "lint": {
+    "rules": {
+      "exclude": ["./src/init/resources/"]
+    },
+    "files": {
+      "exclude": ["./src/init/resources/"]
+    }
+  }
 }
