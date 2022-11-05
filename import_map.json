@@ -1,6 +1,6 @@
 {
     "imports": {
-        "dcra/": "src/",
+        "dcra/": "./src/",
         "cliffy/": "https://deno.land/x/cliffy@v0.25.4/",
         "oak/": "https://deno.land/x/oak@v11.1.0/",
         "std/": "https://deno.land/std@0.138.0/",
