@@ -1,6 +1,7 @@
-import {oak, fs, open} from '../deps.ts'
-import {bundleIndexJs} from "../build/bundle.ts";
-import {ensureProject} from "../util.ts";
+import { Router, send, Application, helpers, isHttpError } from "oak/mod.ts"
+import { open } from "opener/mod.ts";
+import {bundleIndexJs} from "dcra/build/bundle.ts";
+import {ensureProject} from "dcra/util.ts";
 
 const bundleOutput = 'dist/run/static/js/main.js'
 
@@ -36,29 +37,29 @@ export async function watch() {
   }
 }
 
-export async function runServer(port: number) {
-  const router = new oak.Router();
+export function runServer(port: number) {
+  const router = new Router();
   router
     .get('/ping', ctx => {
       ctx.response.body = 'pong'
     })
     .get('/', async ctx => {
-      await oak.send(ctx, 'index.html');
+      await send(ctx, 'index.html');
     })
     .get('/static/js/main.js', async ctx => {
-      await oak.send(ctx, bundleOutput);
+      await send(ctx, bundleOutput);
     })
     .get('/static/:path(.*)', async ctx => {
-      await oak.send(ctx, ctx.request.url.pathname);
+      await send(ctx, ctx.request.url.pathname);
     })
 
-  const app = new oak.Application();
+  const app = new Application();
   app.use(async (ctx, next) => {
-    const query = oak.helpers.getQuery(ctx)
+    const query = helpers.getQuery(ctx)
     try {
       await next();
     } catch (err) {
-      if (oak.isHttpError(err)) {
+      if (isHttpError(err)) {
         ctx.response.body = {
           code: err.status,
           message: err.message,

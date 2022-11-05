@@ -1,6 +1,7 @@
-import {path, fs} from '../../deps.ts'
+import { walk } from "std/fs/mod.ts";
+import { dirname, fromFileUrl, join, relative } from "std/path/mod.ts";
 
-const templatePath = path.dirname(path.fromFileUrl(import.meta.url))
+const templatePath = dirname(fromFileUrl(import.meta.url))
 const p = Deno.run({
   cmd: [
     'deno', 'run', '--allow-read', '--allow-write', '--unstable',
@@ -19,16 +20,16 @@ if (!status.success) {
   Deno.exit(status.code)
 }
 
-const resourcesPath = path.join(templatePath, 'resources');
-const generatedModPath = path.join(templatePath, 'generated', 'mod.ts')
+const resourcesPath = join(templatePath, 'resources');
+const generatedModPath = join(templatePath, 'generated', 'mod.ts')
 
 console.log(`generate mod.ts ${generatedModPath}`)
 
 const imports = []
 const values = []
 
-for await (const f of fs.walk(resourcesPath, {includeDirs: false})) {
-  const rel = path.relative(resourcesPath, f.path).replace(/\\/g, '/')
+for await (const f of walk(resourcesPath, {includeDirs: false})) {
+  const rel = relative(resourcesPath, f.path).replace(/\\/g, '/')
   const name = rel.replace(/\W/g, '_')
 
   imports.push(`import ${name} from './${rel}.static.ts'`)
