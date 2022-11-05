@@ -1,7 +1,7 @@
-import {cli} from "../deps.ts";
-import {build} from "./main.ts";
+import { Command } from "cliffy/command/mod.ts";
+import {build} from "dcra/build/main.ts";
 
-export const Command = new cli.Command()
+export const buildCommand = new Command()
   .description("build project")
   .allowEmpty()
   .action(build);

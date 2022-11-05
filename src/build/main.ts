@@ -1,6 +1,8 @@
-import {fs, path} from "../deps.ts"
-import {bundleIndexJs} from "./bundle.ts"
-import {ensureProject} from "../util.ts";
+import { emptyDir, ensureFile, walk } from "std/fs/mod.ts";
+import { join } from "std/path/mod.ts";
+
+import {bundleIndexJs} from "dcra/build/bundle.ts"
+import {ensureProject} from "dcra/util.ts";
 
 const buildFolder = 'dist/build'
 const mainJsOutput = 'dist/build/static/js/main.js'
@@ -9,20 +11,20 @@ export async function build() {
   ensureProject()
 
   console.log(`cleaning build dir: ${buildFolder}`)
-  await fs.emptyDir(buildFolder)
+  await emptyDir(buildFolder)
 
   console.log(`bundling index.tsx`)
   await bundleIndexJs(mainJsOutput)
 
-  const targetIndexHTML = path.join(buildFolder, 'index.html');
+  const targetIndexHTML = join(buildFolder, 'index.html');
   console.log(`copying index.html -> ${targetIndexHTML}`)
-  await fs.ensureFile(targetIndexHTML)
+  await ensureFile(targetIndexHTML)
   await Deno.copyFile('index.html', targetIndexHTML)
 
-  for await (const f of fs.walk('static', {includeDirs: false})) {
-    const targetPath = path.join(buildFolder, f.path);
+  for await (const f of walk('static', {includeDirs: false})) {
+    const targetPath = join(buildFolder, f.path);
     console.log(`copying ${f.path} -> ${targetPath}`)
-    await fs.ensureFile(targetPath)
+    await ensureFile(targetPath)
     await Deno.copyFile(f.path, targetPath)
   }
   console.log(`build done. see '${buildFolder}'`)

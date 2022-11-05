@@ -1,10 +1,10 @@
-import {cli} from "../deps.ts";
-import {initProject} from "./main.ts";
+import {Command} from "cliffy/command/mod.ts";
+import {initProject} from "dcra/init/main.ts";
 
-export const Command = new cli.Command()
+export const initCommand = new Command()
   .description("init deno-create-react-app project")
   .arguments('<name:string>')
-  .action(async (options: any, name: string) => {
+  .action(async (_options, name: string) => {
     await initProject(Deno.cwd(), name)
   });
 
